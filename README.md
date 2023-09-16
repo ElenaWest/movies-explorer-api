@@ -1,4 +1,5 @@
-# movies-explorer-api
+#Backend сервиса movies-explorer. Дипломный проект Yandex Practicum.
 
+![](./ReadMe.jpg)
 
-1 Создать ветку
+##Ссылка на публичный сервер: 
