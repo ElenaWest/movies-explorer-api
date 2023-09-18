@@ -8,7 +8,7 @@ const helmet = require('helmet');
 const errorHandler = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const DATABASE = require('./utils/database');
+const { DATABASE } = require('./utils/database');
 
 const { PORT = 3000, DB_URL = DATABASE } = process.env;
 

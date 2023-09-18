@@ -1,5 +1,5 @@
 const { celebrate, Joi } = require('celebrate');
-const httpRegex = require('./constants');
+const { httpRegex } = require('./constants');
 
 const addMovieValidation = celebrate({
   body: Joi.object().keys({
