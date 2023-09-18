@@ -10,6 +10,8 @@ const BadRequestError = require('../errors/BadRequestError');
 const NotFoundError = require('../errors/NotFoundError');
 const ConflictError = require('../errors/ConflictError');
 
+const { USER_CONFLICT_EMAIL, USER_NOT_FOUND } = require('../utils/constants');
+
 module.exports.addUser = (req, res, next) => {
   const { name, email, password } = req.body;
   bcrypt.hash(password, 10)
@@ -21,7 +23,7 @@ module.exports.addUser = (req, res, next) => {
       }))
       .catch((error) => {
         if (error.code === 11000) {
-          next(new ConflictError('Пользователь с таким email уже зарегистрирован'));
+          next(new ConflictError(USER_CONFLICT_EMAIL));
         } else if (error instanceof mongoose.Error.ValidationError) {
           next(new BadRequestError(error.message));
         } else {
@@ -51,7 +53,7 @@ module.exports.editUserData = (req, res, next) => {
       if (error instanceof mongoose.Error.ValidationError) {
         next(new BadRequestError(error.message));
       } else if (error instanceof mongoose.Error.DocumentNotFoundError) {
-        next(new NotFoundError('Запрашиваемый пользователь не найден'));
+        next(new NotFoundError(USER_NOT_FOUND));
       } else {
         next(error);
       }

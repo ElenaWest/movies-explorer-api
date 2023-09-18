@@ -1,55 +1,56 @@
 const mongoose = require('mongoose');
 const httpRegex = require('../utils/constants');
+const { REQUIRED_MESSAGE, VALIDATE_MESSAGE } = require('../utils/constants');
 
 const movieSchema = new mongoose.Schema({
   country: {
     type: String,
-    required: [true, 'Поле должно быть заполнено'],
+    required: [true, REQUIRED_MESSAGE],
   },
   director: {
     type: String,
-    required: [true, 'Поле должно быть заполнено'],
+    required: [true, REQUIRED_MESSAGE],
   },
   duration: {
     type: Number,
-    required: [true, 'Поле должно быть заполнено'],
+    required: [true, REQUIRED_MESSAGE],
   },
   year: {
     type: String,
-    required: [true, 'Поле должно быть заполнено'],
+    required: [true, REQUIRED_MESSAGE],
   },
   description: {
     type: String,
-    required: [true, 'Поле должно быть заполнено'],
+    required: [true, REQUIRED_MESSAGE],
   },
   image: {
     type: String,
-    required: [true, 'Поле должно быть заполнено'],
+    required: [true, REQUIRED_MESSAGE],
     validate: {
       validator(url) {
         return httpRegex.test(url);
       },
-      message: 'Неправильно указан URL',
+      message: VALIDATE_MESSAGE,
     },
   },
   trailerLink: {
     type: String,
-    required: [true, 'Поле должно быть заполнено'],
+    required: [true, REQUIRED_MESSAGE],
     validate: {
       validator(url) {
         return httpRegex.test(url);
       },
-      message: 'Неправильно указан URL',
+      message: VALIDATE_MESSAGE,
     },
   },
   thumbnail: {
     type: String,
-    required: [true, 'Поле должно быть заполнено'],
+    required: [true, REQUIRED_MESSAGE],
     validate: {
       validator(url) {
         return httpRegex.test(url);
       },
-      message: 'Неправильно указан URL',
+      message: VALIDATE_MESSAGE,
     },
   },
   owner: {
@@ -63,11 +64,11 @@ const movieSchema = new mongoose.Schema({
   },
   nameRU: {
     type: String,
-    required: [true, 'Поле должно быть заполнено'],
+    required: [true, REQUIRED_MESSAGE],
   },
   nameEN: {
     type: String,
-    required: [true, 'Поле должно быть заполнено'],
+    required: [true, REQUIRED_MESSAGE],
   },
 }, { versionKey: false });
 
