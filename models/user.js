@@ -25,13 +25,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, REQUIRED_MESSAGE],
     select: false,
-    minlength: 3,
+    minlength: 4,
   },
   name: {
     type: String,
     required: [true, REQUIRED_MESSAGE],
     minlength: [2, MIN_LENGTH_MESSAGE],
-    maxlength: [30, MAX_LENGTH_MESSAGE],
+    maxlength: [40, MAX_LENGTH_MESSAGE],
   },
 }, { versionKey: false });
 

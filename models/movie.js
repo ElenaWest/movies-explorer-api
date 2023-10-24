@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const httpRegex = require('../utils/constants');
+const URLregex = require('validator/lib/isURL');
 const { REQUIRED_MESSAGE, VALIDATE_MESSAGE } = require('../utils/constants');
 
 const movieSchema = new mongoose.Schema({
@@ -27,32 +28,44 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: [true, REQUIRED_MESSAGE],
     validate: {
-      validator(url) {
-        return httpRegex.test(url);
-      },
+      validator: (v) => URLregex(v),
       message: VALIDATE_MESSAGE,
     },
+    // validate: {
+    //   validator(url) {
+    //     return httpRegex.test(url);
+    //   },
+    //   message: VALIDATE_MESSAGE,
+    // },
   },
   trailerLink: {
     type: String,
     required: [true, REQUIRED_MESSAGE],
     validate: {
-      validator(url) {
-        return httpRegex.test(url);
-      },
+      validator: (v) => URLregex(v),
       message: VALIDATE_MESSAGE,
     },
+    // validate: {
+    //   validator(url) {
+    //     return httpRegex.test(url);
+    //   },
+    //   message: VALIDATE_MESSAGE,
+    // },
   },
   thumbnail: {
     type: String,
     required: [true, REQUIRED_MESSAGE],
     validate: {
-      validator(url) {
-        return httpRegex.test(url);
-      },
+      validator: (v) => URLregex(v),
       message: VALIDATE_MESSAGE,
     },
-  },
+    },
+    // validate: {
+    //   validator(url) {
+    //     return httpRegex.test(url);
+    //   },
+    //   message: VALIDATE_MESSAGE,
+    // },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
