@@ -4,4 +4,4 @@
 
 ## Ссылка на публичный сервер:
 🠊 https://api.movies-explorer.nomoredomainsrocks.ru/
-🠊 IP 158.160.121.85
+🠊 IP 51.250.92.68
