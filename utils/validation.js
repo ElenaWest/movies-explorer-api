@@ -26,21 +26,21 @@ const deleteMovieValidation = celebrate({
 const loginValidation = celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
-    password: Joi.string().required().min(3),
+    password: Joi.string().required().min(4),
   }),
 });
 
 const addUserValidation = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30).required(),
+    name: Joi.string().min(2).max(40).required(),
     email: Joi.string().required().email(),
-    password: Joi.string().required().min(3),
+    password: Joi.string().required().min(4),
   }),
 });
 
 const editUserDataValidation = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().required().min(2).max(30),
+    name: Joi.string().required().min(2).max(40),
     email: Joi.string().required().email(),
   }),
 });
