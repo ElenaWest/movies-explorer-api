@@ -6,6 +6,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 
 const errorHandler = require('./middlewares/errorHandler');
+console.log(errorHandler)
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { DATABASE } = require('./utils/database');
