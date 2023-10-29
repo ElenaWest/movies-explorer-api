@@ -7,6 +7,7 @@ const {
   UNAUTHORIZED_ERROR_MESSAGE,
   MIN_LENGTH_MESSAGE,
   MAX_LENGTH_MESSAGE,
+  EMAIL_REGEX,
 } = require('../utils/constants');
 
 const userSchema = new mongoose.Schema({
@@ -22,7 +23,7 @@ const userSchema = new mongoose.Schema({
     unique: true,
     validate: {
       validator(email) {
-        return /^\S+@\S+\.\S+$/.test(email);
+        return EMAIL_REGEX.test(email);
       },
       message: VALIDATE_MESSAGE_EMAIL,
     },
@@ -35,7 +36,7 @@ const userSchema = new mongoose.Schema({
   },
 }, { versionKey: false });
 
-userSchema.statics.findUserByCredentials = function findUserByCredentials(email, password) {
+userSchema.statics.findUserByCredentials = async function findUserByCredentials(email, password) {
   return this.findOne({ email })
     .select('+password')
     .then((user) => {

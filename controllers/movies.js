@@ -58,6 +58,7 @@ module.exports.getMovies = (req, res, next) => {
 module.exports.deleteMovie = (req, res, next) => {
   const { movieId } = req.params;
   Movie.findById(movieId)
+    .orFail()
     .then((movie) => {
       if (!movie) {
         throw new NotFoundError(FILM_NOT_FOUND);

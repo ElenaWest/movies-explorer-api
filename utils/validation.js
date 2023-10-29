@@ -1,5 +1,6 @@
 const { celebrate, Joi } = require('celebrate');
-const { httpRegex } = require('./constants');
+const { URL_REGEX, EMAIL_REGEX } = require('./constants');
+
 
 const addMovieValidation = celebrate({
   body: Joi.object().keys({
@@ -8,9 +9,9 @@ const addMovieValidation = celebrate({
     duration: Joi.number().required(),
     year: Joi.string().required(),
     description: Joi.string().required(),
-    image: Joi.string().required().pattern(httpRegex),
-    trailerLink: Joi.string().required().pattern(httpRegex),
-    thumbnail: Joi.string().required().pattern(httpRegex),
+    image: Joi.string().required().pattern(URL_REGEX),
+    trailerLink: Joi.string().required().pattern(URL_REGEX),
+    thumbnail: Joi.string().required().pattern(URL_REGEX),
     movieId: Joi.number().required(),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
@@ -25,7 +26,7 @@ const deleteMovieValidation = celebrate({
 
 const loginValidation = celebrate({
   body: Joi.object().keys({
-    email: Joi.string().required().email(),
+    email: Joi.string().required().pattern(EMAIL_REGEX),
     password: Joi.string().required().min(4),
   }),
 });
@@ -33,7 +34,7 @@ const loginValidation = celebrate({
 const addUserValidation = celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(40).required(),
-    email: Joi.string().required().email(),
+    email: Joi.string().required().pattern(EMAIL_REGEX),
     password: Joi.string().required().min(4),
   }),
 });
@@ -41,7 +42,7 @@ const addUserValidation = celebrate({
 const editUserDataValidation = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(40),
-    email: Joi.string().required().email(),
+    email: Joi.string().required().pattern(EMAIL_REGEX),
   }),
 });
 

@@ -39,9 +39,7 @@ module.exports.login = (req, res, next) => {
       const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? SECRET_KEY : 'hello', { expiresIn: '7d' });
       res.send({ token });
     })
-    .catch((error) => {
-      next(error);
-    });
+    .catch(next);
 };
 
 module.exports.editUserData = (req, res, next) => {
@@ -50,7 +48,9 @@ module.exports.editUserData = (req, res, next) => {
     .orFail()
     .then((user) => res.status(HTTP_STATUS_OK).send(user))
     .catch((error) => {
-      if (error instanceof mongoose.Error.ValidationError) {
+      if (error.code === 11000) {
+        next(new ConflictError(USER_CONFLICT_EMAIL));
+      } else if (err instanceof mongoose.Error.ValidationError) {
         next(new BadRequestError(error.message));
       } else if (error instanceof mongoose.Error.DocumentNotFoundError) {
         next(new NotFoundError(USER_NOT_FOUND));
@@ -62,7 +62,6 @@ module.exports.editUserData = (req, res, next) => {
 
 module.exports.getUserInfo = (req, res, next) => {
   User.findById(req.user._id)
-    .orFail()
-    .then((user) => res.status(HTTP_STATUS_OK).send(user))
+    .then((users) => res.status(HTTP_STATUS_OK).send(users))
     .catch(next);
 };

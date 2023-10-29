@@ -1,4 +1,5 @@
-const httpRegex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/;
+const URL_REGEX = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/;
+const EMAIL_REGEX = /^\S+@\S+\.\S+$/;
 
 const FILM_NOT_FOUND = 'Запрашиваемый фильм не найден';
 const FILM_FORBIDDEN_DELETE = 'Невозможно удалить фильм другого пользователя';
@@ -23,7 +24,8 @@ const MAX_LENGTH_MESSAGE = 'Максимальная длина поля — 30 
 const SERVER_ERROR_MESSAGE = 'Произошла ошибка на сервере';
 
 module.exports = {
-  httpRegex,
+  URL_REGEX,
+  EMAIL_REGEX,
   FILM_NOT_FOUND,
   FILM_FORBIDDEN_DELETE,
   FILM_DELETE,
