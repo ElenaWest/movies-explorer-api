@@ -30,6 +30,7 @@ module.exports.addUser = (req, res, next) => {
           next(error);
         }
       }));
+      console.log(error)
 };
 
 module.exports.login = (req, res, next) => {
@@ -58,6 +59,7 @@ module.exports.editUserData = (req, res, next) => {
         next(error);
       }
     });
+    console.log(error)
 };
 
 module.exports.getUserInfo = (req, res, next) => {
